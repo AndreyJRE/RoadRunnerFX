@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="399.0" prefWidth="500.0" style="-fx-background-color: GRAY;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.roadrunnerfx.controllers.StartController">
+   <children>
+      <VBox alignment="CENTER" layoutX="127.0" layoutY="35.0" prefHeight="329.0" prefWidth="247.0">
+         <children>
+            <Button fx:id="startButton" alignment="CENTER" cache="true" contentDisplay="CENTER" mnemonicParsing="false" onAction="#startClicked" prefHeight="68.0" prefWidth="164.0" text="Start">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

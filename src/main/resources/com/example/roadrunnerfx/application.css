@@ -1,0 +1,16 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+
+.buttons{
+	-fx-background-radius: 6.0px;
+}
+
+.buttons:hover{
+	-fx-background-color: rgba(18.0, 220.0, 0.0, 1.0);
+	-fx-cursor: hand;
+	
+	
+	
+}
+.scoreLabel{
+	-fx-text-fill: rgb(200.0,50.0,50.0);
+}
