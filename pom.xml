@@ -19,16 +19,19 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-graphics</artifactId>
             <version>19</version>
+
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>19</version>
+
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
             <version>19</version>
+
         </dependency>
 
         <dependency>
@@ -48,11 +51,32 @@
             <artifactId>javafx-swing</artifactId>
             <version>19</version>
 
+
         </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <name>RoadRunnerFX</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>com.example</vendor>
+                    <destination>target/dist</destination>
+                    <module>com.example.roadrunnerfx/com.example.roadrunnerfx.StartMenu</module>
+                    <runtimeImage>target/app</runtimeImage>
+                    <linuxShortcut>true</linuxShortcut>
+                    <linuxPackageName>roadrunnerfx</linuxPackageName>
+                    <linuxAppCategory>Utilities</linuxAppCategory>
+                    <linuxMenuGroup>Utilities</linuxMenuGroup>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
