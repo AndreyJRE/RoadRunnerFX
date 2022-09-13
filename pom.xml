@@ -89,9 +89,7 @@
                     <executable>
                         /Users/AndreyStoyanov/Desktop/zulu17.36.17-ca-fx-jdk17.0.4.1-macosx_aarch64/zulu-17.jdk/Contents/Home/bin/java
                     </executable>
-                    <jlinkExecutable>
-                        /Users/AndreyStoyanov/Desktop/zulu17.36.17-ca-fx-jdk17.0.4.1-macosx_aarch64/zulu-17.jdk/Contents/Home/bin/jlink
-                    </jlinkExecutable>
+
                 </configuration>
                 <executions>
                     <execution>
