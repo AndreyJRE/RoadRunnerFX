@@ -6,10 +6,10 @@ If the main ball intersects the yellow ball, you get 10 points. Red ball takes a
 You can shoot only blue balls.
 
 Game control:
-To turn left: A or left arrow.
-To turn right: D or right arrow.
-To jump: space or up arrow.
-To shoot: V 
+  To turn left: A or left arrow.
+  To turn right: D or right arrow.
+  To jump: space or up arrow.
+  To shoot: V 
 
 
 
