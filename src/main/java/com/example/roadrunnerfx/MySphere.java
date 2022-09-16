@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
 
+import javafx.animation.RotateTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Platform;
 import javafx.scene.Camera;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
@@ -25,7 +27,7 @@ public class MySphere extends Sphere implements Runnable {
 	private final double START_ROTATE_SPEED = -0.5;
 	private final double START_SPEED = 2;
 
-	private Camera camera;
+	private final Camera camera;
 	private TranslateTransition jumpTransition;
 	private volatile boolean running = false;
 	private int onLine;
@@ -84,16 +86,24 @@ public class MySphere extends Sphere implements Runnable {
 
 	public void moveRight(int x) {
 		if (onLine != 3 && turnOn && !roadRunner.isPaused()) {
+			RotateTransition rotateTransition=new RotateTransition(Duration.seconds(turningSpeed),this);
 			TranslateTransition translateRight = new TranslateTransition(Duration.seconds(turningSpeed), this);
 			TranslateTransition translateRightCamera = new TranslateTransition(Duration.seconds(turningSpeed), camera);
+			rotateTransition.setCycleCount(1);
+			rotateTransition.setAxis(Rotate.Z_AXIS);
+			rotateTransition.setByAngle(360);
 			translateRight.setCycleCount(1);
 			translateRight.setByX(x);
 			translateRightCamera.setCycleCount(1);
 			translateRightCamera.setByX(x);
+
+			rotateTransition.play();
 			translateRight.play();
 			translateRightCamera.play();
+
 			turnOn = false;
 			translateRight.setOnFinished(event -> {
+
 				turnOn = true;
 			});
 			onLine++;
@@ -104,16 +114,24 @@ public class MySphere extends Sphere implements Runnable {
 	public void moveLeft(int x) {
 
 		if (onLine != 1 && turnOn & !roadRunner.isPaused()) {
+			RotateTransition rotateTransition=new RotateTransition(Duration.seconds(turningSpeed),this);
 			TranslateTransition translateRight = new TranslateTransition(Duration.seconds(turningSpeed), this);
 			TranslateTransition translateRightCamera = new TranslateTransition(Duration.seconds(turningSpeed), camera);
+			rotateTransition.setCycleCount(1);
+			rotateTransition.setAxis(Rotate.Z_AXIS);
+			rotateTransition.setByAngle(-360);
 			translateRight.setCycleCount(1);
 			translateRight.setByX(-x);
 			translateRightCamera.setCycleCount(1);
 			translateRightCamera.setByX(-x);
+
+			rotateTransition.play();
 			translateRight.play();
 			translateRightCamera.play();
+
 			turnOn = false;
 			translateRight.setOnFinished(event -> {
+
 				turnOn = true;
 			});
 
@@ -198,6 +216,12 @@ public class MySphere extends Sphere implements Runnable {
 					this.rotate(rotateSpeed);
 					if (objectCreater.intersectsYellowSphere()) {
 						roadRunner.addToScore(10);
+						ProgressBar pb=roadRunner.getProgressBar();
+						pb.setProgress(pb.getProgress() + 1.0/3.0);
+
+						if(pb.getProgress()==1){
+							pb.setProgress(0);
+						}
 						updateSpeed();
 					}
 					if (objectCreater.intersectsRedSphere()) {
