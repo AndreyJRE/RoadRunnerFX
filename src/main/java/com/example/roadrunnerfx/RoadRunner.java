@@ -46,8 +46,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
-import jfxtras.styles.jmetro.JMetro;
-import jfxtras.styles.jmetro.Style;
+
 
 public class RoadRunner {
 
@@ -89,7 +88,7 @@ public class RoadRunner {
     }
 
     public void initialize() {
-        JMetro jmetro = new JMetro(Style.LIGHT);
+
         Levels.setStart();
         paused = false;
         firstView = false;
@@ -280,7 +279,7 @@ public class RoadRunner {
     public void saveAsPng() throws AWTException {
 
         WritableImage image = scene.snapshot(null);
-        Path path = Paths.get("/Users/AndreyStoyanov/Desktop/JavaFX/RoadRunnerFX/src/resources/gamePauseImage.png");
+        Path path = Paths.get("src/main/resources/com/example/roadrunnerfx/Images/gamePauseImage.png");
         File file = path.toFile();
 
         try {
@@ -295,7 +294,7 @@ public class RoadRunner {
         try {
             saveAsPng();
             BufferedImage bi = ImageIO.read(
-                    Paths.get("/Users/AndreyStoyanov/Desktop/JavaFX/RoadRunnerFX/src/resources/gamePauseImage.png")
+                    Paths.get("src/main/resources/com/example/roadrunnerfx/Images/gamePauseImage.png")
                             .toFile());
             image = SwingFXUtils.toFXImage(bi, null);
             imagePause.setImage(image);

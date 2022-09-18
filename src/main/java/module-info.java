@@ -3,7 +3,6 @@ module com.example.roadrunnerfx {
     requires javafx.fxml;
     requires java.desktop;
     requires javafx.swing;
-    requires org.jfxtras.styles.jmetro;
 
     exports com.example.roadrunnerfx;
     exports com.example.roadrunnerfx.controllers;
