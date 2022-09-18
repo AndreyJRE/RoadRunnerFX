@@ -80,6 +80,17 @@
                         <option>-Dfile.encoding=UTF-8</option>
                     </javaOptions>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>mac</id>
+                    </execution>
+                    <execution>
+                        <id>win</id>
+                        <configuration>
+                            <winMenu>true</winMenu>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
