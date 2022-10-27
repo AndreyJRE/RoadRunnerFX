@@ -77,6 +77,10 @@ public class RoadRunner {
     private SubScene subSceneCenter;
     private Label levelLabel;
 
+    private Label shootsLabel;
+
+
+    private int shootsscore;
 
     private ProgressBar progressBar;
 
@@ -114,6 +118,9 @@ public class RoadRunner {
         rotateCameraDown();
 
         score = 0;
+        shootsscore = 0;
+        shootsLabel = new Label("Shoots: " + shootsscore);
+        shootsLabel.setFont(new Font("Arial", 40));
         scoreLabel = new Label("SCORE: " + score);
         scoreLabel.setAlignment(Pos.CENTER);
 
@@ -133,11 +140,12 @@ public class RoadRunner {
         HBox.setMargin(levelLabel, new Insets(0, 50, 0, 0));
         HBox.setMargin(scoreLabel, new Insets(0, 50, 0, 0));
         HBox.setMargin(changeViewButton, new Insets(0, 50, 0, 0));
+        HBox.setMargin(progressBar, new Insets(0, 50, 0, 0));
 
         labelBox.setAlignment(Pos.CENTER);
         scoreLabel.setFont(new Font("Arial", 40));
         labelBox.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
-        labelBox.getChildren().addAll(levelLabel, scoreLabel, changeViewButton, progressBar);
+        labelBox.getChildren().addAll(levelLabel, scoreLabel, changeViewButton, progressBar, shootsLabel);
 
         scoreLabel.getStyleClass().add("scoreLabel");
         vBox.getChildren().addAll(labelBox, subSceneCenter);
@@ -498,9 +506,6 @@ public class RoadRunner {
         return objectCreater;
     }
 
-    public Node[] getPointlights() {
-        return pointlights;
-    }
 
     public Scene getScene() {
         return scene;
@@ -552,5 +557,15 @@ public class RoadRunner {
     public ProgressBar getProgressBar() {
         return progressBar;
     }
+
+    public int getShootsscore() {
+        return shootsscore;
+    }
+
+    public void setShootsscore(int shootsscore) {
+        this.shootsscore = shootsscore;
+        this.shootsLabel.setText("Shoots: " + shootsscore);
+    }
+
 
 }

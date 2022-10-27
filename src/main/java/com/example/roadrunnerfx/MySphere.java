@@ -41,10 +41,9 @@ public class MySphere extends Sphere implements Runnable {
     private double rotateSpeed = START_ROTATE_SPEED;
     private double turningSpeed = START_TURNING_SPEED;
     private double jumpSpeed = START_JUMP_SPEED;
-
     private RoadRunner roadRunner;
     private ObjectCreater objectCreater;
-    MyGround myGround;
+    private MyGround myGround;
     private double sphereRadius;
     volatile private ArrayList<Sphere> shootSpheres;
 
@@ -220,6 +219,7 @@ public class MySphere extends Sphere implements Runnable {
                         pb.setProgress(pb.getProgress() + 1.0 / 3.0);
 
                         if (pb.getProgress() == 1) {
+                            roadRunner.setShootsscore(roadRunner.getShootsscore() + 1);
                             pb.setProgress(0);
                         }
                         updateSpeed();
@@ -230,6 +230,7 @@ public class MySphere extends Sphere implements Runnable {
                         } else {
                             roadRunner.addToScore(-20);
                         }
+                        roadRunner.getProgressBar().setProgress(0);
 
                     }
                     if (objectCreater.intersectsBlueSphere()) {
@@ -252,24 +253,29 @@ public class MySphere extends Sphere implements Runnable {
     }
 
     public void shoot() {
-        Sphere shootSphere = new Sphere(sphereRadius / 2);
-        shootSpheres.add(shootSphere);
-        shootSphere.setTranslateX(this.getTranslateX());
-        shootSphere.setTranslateY(this.getTranslateY());
-        shootSphere.setTranslateZ(this.getTranslateZ());
-        TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), shootSphere);
-        tt.setByZ(2500);
-        tt.setCycleCount(1);
-        roadRunner.getRoot().getChildren().add(shootSphere);
-        tt.play();
+        if (roadRunner.getShootsscore() > 0) {
+            Sphere shootSphere = new Sphere(sphereRadius / 2);
+            shootSpheres.add(shootSphere);
+            shootSphere.setTranslateX(this.getTranslateX());
+            shootSphere.setTranslateY(this.getTranslateY());
+            shootSphere.setTranslateZ(this.getTranslateZ() + 15);
+            TranslateTransition tt = new TranslateTransition(Duration.seconds(0.5), shootSphere);
+            tt.setByZ(2500);
+            tt.setCycleCount(1);
+            roadRunner.getRoot().getChildren().add(shootSphere);
+            tt.play();
 
-        tt.setOnFinished(event -> {
-            if (roadRunner.getRoot().getChildren().contains(shootSphere)) {
-                shootSpheres.remove(shootSphere);
-                roadRunner.getRoot().getChildren().remove(shootSphere);
-            }
-        });
+            tt.setOnFinished(event -> {
+                if (roadRunner.getRoot().getChildren().contains(shootSphere)) {
+                    shootSpheres.remove(shootSphere);
+                    roadRunner.getRoot().getChildren().remove(shootSphere);
+                }
+            });
 
+            roadRunner.setShootsscore(roadRunner.getShootsscore() - 1);
+
+
+        }
     }
 
     synchronized public void checkShootingCollision() {
