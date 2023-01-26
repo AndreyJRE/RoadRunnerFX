@@ -12,5 +12,5 @@ Game control:
   To shoot: V 
 
 
-
-
+Link to video, how game looks: 
+https://www.youtube.com/watch?v=uClW_qVnRMg
